@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 import joblib
 
-# --- ŁADOWANIE MODELU ---
+# ŁADOWANIE MODELU
 model = joblib.load("rf_model.pkl")
 encoder = joblib.load("encoder.pkl")
 
@@ -11,7 +11,7 @@ st.title("⚽ Predykcja optymalnej pozycji piłkarskiej (realne testy fizyczne)"
 
 st.write("Wprowadź wyniki swoich testów, a system przeliczy je na parametry 1–99 i dopasuje TOP 3 pozycje.")
 
-# --- FUNKCJE PRZELICZAJĄCE ---
+# FUNKCJE PRZELICZAJĄCE
 def scale(x, min_val, max_val):
     return int(1 + 98 * (x - min_val) / (max_val - min_val))
 
@@ -19,7 +19,7 @@ def scale_inverse(x, min_val, max_val):
     return int(1 + 98 * (max_val - x) / (max_val - min_val))
 
 
-# --- FORMULARZ REALNYCH TESTÓW ---
+# FORMULARZ REALNYCH TESTÓW
 st.header("📊 Testy sprawnościowe")
 
 t10 = st.number_input("Czas biegu na 10 m (sekundy)", 1.5, 4.0, 2.0)
@@ -28,7 +28,7 @@ t_test = st.number_input("T-test agility (sekundy)", 8.0, 20.0, 11.0)
 balance = st.number_input("Stanie na 1 nodze (sekundy)", 1, 60, 20)
 cmj = st.number_input("Wyskok pionowy CMJ (cm)", 10, 100, 40)
 coop = st.number_input("Test Coopera – dystans (m)", 1000, 4000, 2500)
-grip = st.number_input("Siła ścisku dłoni (kg)", 10, 80, 40)
+squat = st.number_input("Przysiad ze sztangą 1RM (kg)", 30, 200, 80)
 
 st.header("⚙️ Dane antropometryczne")
 
@@ -39,17 +39,17 @@ height = st.number_input("Height (cm)", 140, 220, 180)
 weight = st.number_input("Weight (kg)", 40, 120, 75)
 age = st.number_input("Age", 10, 50, 20)
 
-# --- PRZELICZENIE NA SKALĘ EA SPORTS ---
+#  PRZELICZENIE NA SKALĘ EA SPORTS 
 acc = scale_inverse(t10, 1.50, 2.30)
-spr = scale_inverse(t30, 3.60, 4.60)
+spr = scale_inverse(t30, 3.60, 5.00)
 agi = scale_inverse(t_test, 8.5, 13.0)
 bal = scale(balance, 3, 45)
-jmp = scale(cmj, 15, 75)
-sta = scale(coop, 1800, 3500)
-strg = scale(grip, 25, 70)
+jmp = scale(cmj, 25, 75)
+sta = scale(coop, 1800, 3600)
+strg = scale(squat, 40, 180)
 
 
-# --- PRZYCISK ---
+# PRZYCISK 
 if st.button("Oblicz pozycję"):
 
     new_player = pd.DataFrame([{
