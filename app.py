@@ -25,7 +25,7 @@ st.header("📊 Testy sprawnościowe")
 =======
 # --- FORMULARZ REALNYCH TESTÓW ---
 st.header("Testy sprawnościowe")
->>>>>>> 0fd4548cdb273355c46d586ce3491abb5b0f33a1
+
 
 t10 = st.number_input("Czas biegu na 10 m (sekundy)", 1.5, 4.0, 2.0)
 t30 = st.number_input("Czas biegu na 30 m (sekundy)", 3.3, 7.0, 4.2)
@@ -60,7 +60,7 @@ if st.button("Oblicz pozycję"):
 =======
 # --- PRZYCISK ---
 if st.button("Dopasuj pozycję"):
->>>>>>> 0fd4548cdb273355c46d586ce3491abb5b0f33a1
+
 
     new_player = pd.DataFrame([{
         'Acceleration': acc,
