@@ -7,9 +7,9 @@ import joblib
 model = joblib.load("rf_model.pkl")
 encoder = joblib.load("encoder.pkl")
 
-st.title("⚽ Predykcja optymalnej pozycji piłkarskiej (realne testy fizyczne)")
+st.title("⚽ Predykcja optymalnej pozycji piłkarskiej")
 
-st.write("Wprowadź wyniki swoich testów, a system przeliczy je na parametry 1–99 i dopasuje TOP 3 pozycje.")
+st.write("Wprowadź wyniki swoich testów")
 
 # FUNKCJE PRZELICZAJĄCE
 def scale(x, min_val, max_val):
@@ -19,8 +19,13 @@ def scale_inverse(x, min_val, max_val):
     return int(1 + 98 * (max_val - x) / (max_val - min_val))
 
 
+<<<<<<< HEAD
 # FORMULARZ REALNYCH TESTÓW
 st.header("📊 Testy sprawnościowe")
+=======
+# --- FORMULARZ REALNYCH TESTÓW ---
+st.header("Testy sprawnościowe")
+>>>>>>> 0fd4548cdb273355c46d586ce3491abb5b0f33a1
 
 t10 = st.number_input("Czas biegu na 10 m (sekundy)", 1.5, 4.0, 2.0)
 t30 = st.number_input("Czas biegu na 30 m (sekundy)", 3.3, 7.0, 4.2)
@@ -30,7 +35,7 @@ cmj = st.number_input("Wyskok pionowy CMJ (cm)", 10, 100, 40)
 coop = st.number_input("Test Coopera – dystans (m)", 1000, 4000, 2500)
 squat = st.number_input("Przysiad ze sztangą 1RM (kg)", 30, 200, 80)
 
-st.header("⚙️ Dane antropometryczne")
+st.header("Dane antropometryczne")
 
 foot = st.radio("Preferred foot", ["Right", "Left"])
 foot_val = 1 if foot == "Right" else 0
@@ -49,8 +54,13 @@ sta = scale(coop, 1800, 3600)
 strg = scale(squat, 40, 180)
 
 
+<<<<<<< HEAD
 # PRZYCISK 
 if st.button("Oblicz pozycję"):
+=======
+# --- PRZYCISK ---
+if st.button("Dopasuj pozycję"):
+>>>>>>> 0fd4548cdb273355c46d586ce3491abb5b0f33a1
 
     new_player = pd.DataFrame([{
         'Acceleration': acc,
