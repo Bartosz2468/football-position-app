@@ -52,7 +52,7 @@ with st.form("input_form"):
     foot = st.radio("Preferowana noga", ["Right", "Left"])
     foot_val = 1 if foot == "Right" else 0
 
-    height = st.number_input("Wysokość (min 140, max 220)", 140, 220, 180)
+    height = st.number_input("Wysokość (cm)", 140, 220, 180)
     weight = st.number_input("Waga (kg)", 40, 120, 75)
     age = st.number_input("Wiek", 10, 50, 20)
 
