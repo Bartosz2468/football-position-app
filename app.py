@@ -29,13 +29,9 @@ def scale_inverse(x, min_val, max_val):
 #   INTERFEJS
 # =============================
 st.title("⚽ Predykcja optymalnej pozycji piłkarskiej")
-st.write("Wprowadź wyniki testów, a aplikacja pokaże TOP 3 najlepiej dopasowane pozycje boiskowe.")
 
-
-# =====================================================
-#   FORMULARZ (zapobiega restartom przy każdym suwaku)
-# =====================================================
-with st.form("player_form"):
+# FORMULARZ — tutaj wszystko
+with st.form("player_form", clear_on_submit=False):
 
     st.header("Testy sprawnościowe")
 
@@ -56,15 +52,13 @@ with st.form("player_form"):
     weight = st.number_input("Waga (kg)", 40, 120, 75)
     age = st.number_input("Wiek", 10, 50, 20)
 
-    # JEDYNY przycisk — formularz blokuje ENTER
+    # **JEDYNY przycisk — ENTER go NIE wywoła**
     submitted = st.form_submit_button("Oblicz pozycję")
 
-
-# =============================
-#   PRZELICZENIA I PREDYKCJA
-# =============================
+# ====== MODEL LICZY TYLKO TUTAJ ======
 if submitted:
 
+    # przykład obliczeń
     acc = scale_inverse(t10, 1.50, 2.30)
     spr = scale_inverse(t30, 3.60, 5.00)
     agi = scale_inverse(t_test, 8.5, 13.0)
@@ -91,10 +85,10 @@ if submitted:
     top3_idx = probs.argsort()[-3:][::-1]
 
     st.subheader("🏆 TOP 3 dopasowania:")
-
     for idx in top3_idx:
         pos = encoder.inverse_transform([idx])[0]
         st.write(f"**{pos}** — {probs[idx]*100:.2f}%")
+
 
     df_chart = pd.DataFrame({
         "Pozycja": [encoder.inverse_transform([i])[0] for i in top3_idx],
