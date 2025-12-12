@@ -49,7 +49,7 @@ with st.form("input_form"):
 
     st.header("Dane antropometryczne")
 
-    foot = st.radio("Preferowana noga", ["Right", "Left"])
+    foot = st.radio("Preferowana noga", ["Prawa", "Lewa"])
     foot_val = 1 if foot == "Right" else 0
 
     height = st.number_input("Wysokość (cm)", 140, 220, 180)
