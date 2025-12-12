@@ -56,8 +56,8 @@ with st.form("input_form"):
     weight = st.number_input("Waga (kg)", 40, 120, 75)
     age = st.number_input("Wiek", 10, 50, 20)
 
-    # tylko jedno kliknięcie uruchamia obliczenia
-    submitted = st.form_submit_button("Oblicz pozycję")
+    st.form_submit_button("Ukryty", type="secondary", disabled=True)
+    submitted = st.form_submit_button("Oblicz pozycję", type="primary")
 
 
 # =============================
