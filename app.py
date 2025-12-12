@@ -35,7 +35,7 @@ st.write("Wprowadź wyniki testów, a aplikacja pokaże TOP 3 najlepiej dopasowa
 # =====================================================
 #   FORMULARZ (zapobiega restartom przy każdym suwaku)
 # =====================================================
-with st.form("input_form"):
+with st.form("player_form"):
 
     st.header("Testy sprawnościowe")
 
@@ -49,15 +49,18 @@ with st.form("input_form"):
 
     st.header("Dane antropometryczne")
 
-    foot = st.radio("Preferowana noga", ["Right", "Left"])
-    foot_val = 1 if foot == "Right" else 0
+    foot = st.radio("Preferowana noga", ["Prawa", "Lewa"])
+    foot_val = 1 if foot == "Prawa" else 0
 
-    height = st.number_input("Wysokość (cm)", 140, 220, 180)
+    height = st.number_input("Wzrost (cm)", 140, 220, 180)
     weight = st.number_input("Waga (kg)", 40, 120, 75)
     age = st.number_input("Wiek", 10, 50, 20)
 
-    st.form_submit_button("Ukryty", type="secondary", disabled=True)
-    submitted = st.form_submit_button("Oblicz pozycję", type="primary")
+    # JEDYNY przycisk — formularz blokuje ENTER
+    submitted = st.form_submit_button("Oblicz pozycję")
+
+# Logika po kliknięciu
+if submitted:
 
 
 # =============================
