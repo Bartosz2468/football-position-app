@@ -59,9 +59,6 @@ with st.form("player_form"):
     # JEDYNY przycisk — formularz blokuje ENTER
     submitted = st.form_submit_button("Oblicz pozycję")
 
-# Logika po kliknięciu
-if submitted:
-
 
 # =============================
 #   PRZELICZENIA I PREDYKCJA
